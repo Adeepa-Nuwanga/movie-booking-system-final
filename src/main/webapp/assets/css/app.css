@@ -49,6 +49,18 @@ a:hover {
     border-color: #b91419;
 }
 
+.btn-outline-light {
+    border-color: #555555;
+    color: #ffffff;
+}
+
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #111111;
+}
+
 .auth-page {
     align-items: center;
     display: flex;
@@ -121,6 +133,12 @@ a:hover {
 
 .demo-credentials strong {
     color: #ffffff;
+}
+
+.auth-switch {
+    color: #cfcfcf;
+    margin: 18px 0 0;
+    text-align: center;
 }
 
 .message-panel {

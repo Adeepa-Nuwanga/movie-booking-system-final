@@ -14,6 +14,12 @@
             </div>
         <% } %>
 
+        <% if ("true".equals(request.getParameter("registered"))) { %>
+            <div class="alert alert-success" role="alert">
+                Account created successfully. Please sign in.
+            </div>
+        <% } %>
+
         <form action="${pageContext.request.contextPath}/login" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username or Email</label>
@@ -31,6 +37,11 @@
 
             <button type="submit" class="btn btn-danger w-100">Login</button>
         </form>
+
+        <p class="auth-switch">
+            New to CineFlex?
+            <a href="${pageContext.request.contextPath}/signup">Sign up now</a>
+        </p>
 
         <div class="demo-credentials">
             <strong>Demo credentials</strong>
