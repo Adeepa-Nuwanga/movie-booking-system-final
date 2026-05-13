@@ -1,7 +1,9 @@
+/* 1. Base */
+
 body {
+    background: #111111;
+    color: #ffffff;
     font-family: Arial, sans-serif;
-    background: #111;
-    color: white;
     min-height: 100vh;
 }
 
@@ -9,9 +11,19 @@ a {
     color: #ff4d4d;
 }
 
-a:hover {
+a:hover,
+a:focus {
     color: #ff7777;
 }
+
+h1,
+h2,
+h3,
+strong {
+    color: #ffffff;
+}
+
+/* 2. Navbar */
 
 .site-navbar {
     background: #070707;
@@ -24,6 +36,10 @@ a:hover {
     letter-spacing: 0;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: #d7d7d7;
+}
+
 .navbar-brand:hover,
 .navbar-brand:focus,
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -31,9 +47,7 @@ a:hover {
     color: #ff4d4d;
 }
 
-.navbar-dark .navbar-nav .nav-link {
-    color: #d7d7d7;
-}
+/* 3. Buttons and Forms */
 
 .btn {
     border-radius: 6px;
@@ -81,18 +95,7 @@ a:hover {
     color: #ffffff;
 }
 
-.section-kicker,
-.login-card__eyebrow,
-.ticket-label {
-    color: #ff4d4d;
-    display: inline-block;
-    font-size: 0.82rem;
-    font-weight: 700;
-    margin-bottom: 8px;
-    text-transform: uppercase;
-}
-
-/* COMMON PANELS */
+/* 4. Shared Panels and Utilities */
 
 .login-card,
 .message-panel,
@@ -105,13 +108,68 @@ a:hover {
 .seat-summary,
 .movie-card,
 .showtime-placeholder,
-.ticket-panel {
+.ticket-panel,
+.admin-sidebar,
+.admin-panel,
+.stat-card,
+.admin-form,
+.queue-callout {
     background: #181818;
     border: 1px solid #333333;
     border-radius: 8px;
 }
 
-/* AUTH */
+.section-kicker,
+.login-card__eyebrow,
+.ticket-label {
+    color: #ff4d4d;
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.panel-heading {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.panel-heading h1,
+.result-panel h1,
+.ticket-header h1,
+.admin-panel h1 {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.panel-heading p,
+.result-panel p,
+.message-panel p,
+.forbidden-panel p {
+    color: #d7d7d7;
+}
+
+.table-dark {
+    --bs-table-bg: #141414;
+    --bs-table-border-color: #333333;
+}
+
+.queue-table-wrap,
+.booking-table-wrap,
+.admin-table-wrap {
+    border: 1px solid #333333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.queue-table-wrap,
+.booking-table-wrap {
+    margin-bottom: 28px;
+}
+
+/* 5. Auth */
 
 .auth-page {
     align-items: center;
@@ -122,32 +180,24 @@ a:hover {
 }
 
 .login-card {
-    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
     max-width: 430px;
     padding: 32px;
     width: 100%;
 }
 
-.login-card__header,
-.panel-heading {
+.login-card__header {
     margin-bottom: 24px;
     text-align: center;
 }
 
-.login-card h1,
-.panel-heading h1,
-.result-panel h1,
-.ticket-header h1 {
-    color: #ffffff;
+.login-card h1 {
     font-size: clamp(2rem, 5vw, 3.8rem);
     font-weight: 800;
     margin-bottom: 10px;
 }
 
-.login-card p,
-.panel-heading p,
-.result-panel p,
-.message-panel p {
+.login-card p {
     color: #d7d7d7;
 }
 
@@ -158,10 +208,6 @@ a:hover {
     gap: 4px;
     margin-top: 24px;
     padding-top: 16px;
-}
-
-.demo-credentials strong {
-    color: #ffffff;
 }
 
 .auth-switch {
@@ -176,13 +222,13 @@ a:hover {
     padding: 32px;
 }
 
-/* HERO */
+/* 6. Movies and Details */
 
 .movie-hero,
 .page-hero {
     background:
-            linear-gradient(90deg, rgba(0,0,0,0.96), rgba(0,0,0,0.58)),
-            url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80") center/cover;
+        linear-gradient(90deg, rgba(0, 0, 0, 0.96), rgba(0, 0, 0, 0.58)),
+        url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80") center/cover;
 }
 
 .movie-hero {
@@ -216,8 +262,6 @@ a:hover {
     font-size: 1.08rem;
     max-width: 620px;
 }
-
-/* MOVIES */
 
 .sort-panel {
     align-items: end;
@@ -262,14 +306,17 @@ a:hover {
     gap: 10px;
 }
 
+.movie-card__meta,
+.movie-stats {
+    justify-content: space-between;
+}
+
 .movie-card__meta {
     font-size: 0.82rem;
-    justify-content: space-between;
     margin-bottom: 10px;
 }
 
 .movie-card h3 {
-    color: #ffffff;
     font-size: 1.18rem;
     font-weight: 700;
     min-height: 2.8rem;
@@ -277,12 +324,10 @@ a:hover {
 
 .movie-stats {
     font-size: 0.92rem;
-    justify-content: space-between;
     margin: 14px 0 8px;
 }
 
 .movie-price {
-    color: #ffffff;
     font-size: 1.08rem;
     font-weight: 700;
     margin-bottom: 16px;
@@ -292,8 +337,6 @@ a:hover {
     display: grid;
     gap: 10px;
 }
-
-/* DETAILS */
 
 .details-hero {
     background-position: center;
@@ -311,7 +354,7 @@ a:hover {
 .details-poster {
     border: 1px solid #444444;
     border-radius: 8px;
-    box-shadow: 0 18px 44px rgba(0,0,0,0.45);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
     width: 100%;
 }
 
@@ -326,7 +369,11 @@ a:hover {
     padding: 10px 14px;
 }
 
-/* SHOWTIMES */
+.showtime-placeholder {
+    padding: 28px;
+}
+
+/* 7. Showtimes and Seats */
 
 .showtime-card {
     display: grid;
@@ -343,7 +390,6 @@ a:hover {
 }
 
 .showtime-card h2 {
-    color: #ffffff;
     font-size: 1.7rem;
     font-weight: 700;
 }
@@ -359,8 +405,6 @@ a:hover {
     max-width: 720px;
     padding: 32px;
 }
-
-/* SEATS */
 
 .booking-steps {
     display: grid;
@@ -379,7 +423,9 @@ a:hover {
     text-align: center;
 }
 
-.booking-steps .active {
+.booking-steps .active,
+.seat-button.available:hover,
+.seat-button.selected {
     background: #d71920;
     border-color: #d71920;
     color: #ffffff;
@@ -392,11 +438,7 @@ a:hover {
 }
 
 .seat-main,
-.seat-summary,
-.booking-panel,
-.summary-card,
-.metric-card,
-.ticket-panel {
+.seat-summary {
     padding: 28px;
 }
 
@@ -444,12 +486,6 @@ a:hover {
     width: 42px;
 }
 
-.seat-button.available:hover,
-.seat-button.selected {
-    background: #d71920;
-    border-color: #d71920;
-}
-
 .seat-button.booked,
 .seat-button.held,
 .seat-button:disabled {
@@ -459,29 +495,12 @@ a:hover {
     cursor: not-allowed;
 }
 
-/* SUMMARY */
-
-.summary-row,
-.summary-line {
-    align-items: center;
-    border-bottom: 1px solid #333333;
-    color: #d1d1d1;
+.seat-actions {
     display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-}
-
-.summary-row strong,
-.summary-line strong {
-    color: #ffffff;
-}
-
-.summary-row.total,
-.summary-line.total {
-    border-top: 1px solid #333333;
-    border-bottom: 0;
-    font-size: 1.1rem;
-    margin-top: 8px;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
 }
 
 .legend {
@@ -518,7 +537,32 @@ a:hover {
     background: #555555;
 }
 
-/* RESULT */
+/* 8. Booking, Queue, and Ticket */
+
+.booking-panel,
+.summary-card,
+.metric-card,
+.ticket-panel {
+    padding: 28px;
+}
+
+.summary-row,
+.summary-line {
+    align-items: center;
+    border-bottom: 1px solid #333333;
+    color: #d1d1d1;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+}
+
+.summary-row.total,
+.summary-line.total {
+    border-bottom: 0;
+    border-top: 1px solid #333333;
+    font-size: 1.1rem;
+    margin-top: 8px;
+}
 
 .result-panel {
     margin: 0 auto;
@@ -536,7 +580,9 @@ a:hover {
 }
 
 .status-badge {
+    background: #471114;
     border-radius: 999px;
+    color: #ff8a91;
     display: inline-block;
     font-size: 0.78rem;
     font-weight: 800;
@@ -559,8 +605,6 @@ a:hover {
     color: #ff8a91;
 }
 
-/* ADMIN QUEUE */
-
 .queue-metrics {
     display: grid;
     gap: 16px;
@@ -575,27 +619,11 @@ a:hover {
 }
 
 .metric-card strong {
-    color: #ffffff;
     font-size: 1.8rem;
 }
 
-.queue-table-wrap,
-.booking-table-wrap {
-    border: 1px solid #333333;
-    border-radius: 8px;
-    margin-bottom: 28px;
-    overflow: hidden;
-}
-
-.table-dark {
-    --bs-table-bg: #141414;
-    --bs-table-border-color: #333333;
-}
-
-/* TICKET */
-
 .ticket-header {
-    align-items: start;
+    align-items: flex-start;
     border-bottom: 1px solid #333333;
     display: flex;
     gap: 20px;
@@ -618,7 +646,6 @@ a:hover {
 }
 
 .ticket-main h2 {
-    color: #ffffff;
     font-size: 2rem;
     font-weight: 800;
     margin-bottom: 8px;
@@ -636,20 +663,126 @@ a:hover {
 }
 
 .ticket-grid strong {
-    color: #ffffff;
     overflow-wrap: anywhere;
 }
 
-/* RESPONSIVE */
+/* 9. Admin */
+
+.admin-layout {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.admin-sidebar {
+    align-self: start;
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+}
+
+.admin-sidebar a {
+    border-radius: 6px;
+    color: #dddddd;
+    font-weight: 700;
+    padding: 10px 12px;
+    text-decoration: none;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a.active {
+    background: #d71920;
+    color: #ffffff;
+}
+
+.admin-panel {
+    padding: 28px;
+}
+
+.admin-panel h1 {
+    margin-bottom: 22px;
+}
+
+.admin-panel h2,
+.admin-form h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.stat-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat-card,
+.admin-form,
+.queue-callout {
+    padding: 20px;
+}
+
+.stat-card {
+    padding: 22px;
+}
+
+.stat-card span,
+.queue-callout span {
+    color: #cfcfcf;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.stat-card strong,
+.queue-callout strong {
+    font-size: 2rem;
+}
+
+.admin-form {
+    margin-bottom: 24px;
+}
+
+.admin-inline-form {
+    min-width: 220px;
+}
+
+.showtime-edit-form {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.queue-callout {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 22px;
+}
+
+.forbidden-panel {
+    margin: 0 auto;
+    max-width: 720px;
+}
+
+/* 10. Responsive */
 
 @media (max-width: 991px) {
+    .admin-layout,
     .seat-shell {
         grid-template-columns: 1fr;
+    }
+
+    .showtime-edit-form {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
 @media (max-width: 767px) {
-
     .sort-panel,
     .details-layout,
     .ticket-header,
@@ -677,7 +810,8 @@ a:hover {
     .seat-main,
     .seat-summary,
     .booking-panel,
-    .ticket-panel {
+    .ticket-panel,
+    .admin-panel {
         padding: 20px;
     }
 
@@ -690,10 +824,16 @@ a:hover {
     }
 }
 
-/* PRINT */
+@media (max-width: 575px) {
+    .stat-grid,
+    .queue-callout {
+        display: block;
+    }
+}
+
+/* 11. Print */
 
 @media print {
-
     body {
         background: #ffffff;
         color: #000000;
@@ -723,157 +863,5 @@ a:hover {
     .ticket-grid strong,
     .ticket-main p {
         color: #000000;
-    }
-}
-/* =========================
-   ADMIN PANEL
-========================= */
-
-.admin-layout {
-    display: grid;
-    gap: 24px;
-    grid-template-columns: 240px minmax(0, 1fr);
-}
-
-.admin-sidebar,
-.admin-panel,
-.stat-card,
-.admin-form,
-.queue-callout {
-    background: #181818;
-    border: 1px solid #333333;
-    border-radius: 8px;
-}
-
-.admin-sidebar {
-    align-self: start;
-    display: grid;
-    gap: 8px;
-    padding: 16px;
-}
-
-.admin-sidebar a {
-    border-radius: 6px;
-    color: #dddddd;
-    font-weight: 700;
-    padding: 10px 12px;
-    text-decoration: none;
-}
-
-.admin-sidebar a:hover,
-.admin-sidebar a.active {
-    background: #d71920;
-    color: #ffffff;
-}
-
-.admin-panel {
-    padding: 28px;
-}
-
-.admin-panel h1 {
-    color: #ffffff;
-    font-size: clamp(2rem, 5vw, 3.6rem);
-    font-weight: 800;
-    margin-bottom: 22px;
-}
-
-.admin-panel h2,
-.admin-form h2 {
-    color: #ffffff;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-
-.stat-grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.stat-card {
-    padding: 22px;
-}
-
-.stat-card span,
-.queue-callout span {
-    color: #cfcfcf;
-    display: block;
-    margin-bottom: 6px;
-}
-
-.stat-card strong,
-.queue-callout strong {
-    color: #ffffff;
-    font-size: 2rem;
-}
-
-.admin-form {
-    margin-bottom: 24px;
-    padding: 20px;
-}
-
-.admin-table-wrap {
-    border: 1px solid #333333;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.admin-inline-form {
-    min-width: 220px;
-}
-
-.showtime-edit-form {
-    display: grid;
-    gap: 8px;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.queue-callout {
-    align-items: center;
-    display: flex;
-    gap: 16px;
-    justify-content: space-between;
-    margin-bottom: 22px;
-    padding: 18px;
-}
-
-.forbidden-panel {
-    margin: 0 auto;
-    max-width: 720px;
-}
-
-.forbidden-panel p {
-    color: #d0d0d0;
-}
-
-/* =========================
-   ADMIN RESPONSIVE
-========================= */
-
-@media (max-width: 991px) {
-
-    .admin-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .showtime-edit-form {
-        grid-template-columns: 1fr;
-    }
-
-    .stat-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 575px) {
-
-    .admin-panel {
-        padding: 20px;
-    }
-
-    .stat-grid,
-    .queue-callout {
-        display: block;
     }
 }
