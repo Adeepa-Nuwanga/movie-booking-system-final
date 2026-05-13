@@ -1,7 +1,7 @@
 package com.moviebooking.servlet;
 
 import com.moviebooking.model.Movie;
-import com.moviebooking.service.AdminService;
+import com.moviebooking.service.MovieService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,7 +15,7 @@ public class AdminMoviesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("movies", AdminService.getMovies());
+        request.setAttribute("movies", MovieService.getAllMovies());
         request.getRequestDispatcher("/WEB-INF/views/admin-movies.jsp").forward(request, response);
     }
 
@@ -24,11 +24,11 @@ public class AdminMoviesServlet extends HttpServlet {
             throws ServletException, IOException {
         String servletPath = request.getServletPath();
         if ("/admin/movies/delete".equals(servletPath)) {
-            AdminService.deleteMovie(request.getParameter("id"));
+            MovieService.deleteMovie(request.getParameter("id"));
         } else if ("/admin/movies/update".equals(servletPath)) {
-            AdminService.updateMovie(buildMovie(request, request.getParameter("id")));
+            MovieService.updateMovie(buildMovie(request, request.getParameter("id")));
         } else {
-            AdminService.addMovie(buildMovie(request, AdminService.generateId("MOV")));
+            MovieService.addMovie(buildMovie(request, "m" + System.currentTimeMillis()));
         }
 
         response.sendRedirect(request.getContextPath() + "/admin/movies");
