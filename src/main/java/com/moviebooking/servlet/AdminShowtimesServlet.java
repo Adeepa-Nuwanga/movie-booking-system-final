@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import com.moviebooking.model.SeatMap;
 
 @WebServlet(urlPatterns = {"/admin/showtimes", "/admin/showtimes/update", "/admin/showtimes/delete"})
 public class AdminShowtimesServlet extends HttpServlet {
@@ -41,7 +42,8 @@ public class AdminShowtimesServlet extends HttpServlet {
                 value(request, "movieId"),
                 value(request, "cinemaHall"),
                 value(request, "date"),
-                value(request, "time")
+                value(request, "time"),
+                new SeatMap(6, 8)
         );
     }
 

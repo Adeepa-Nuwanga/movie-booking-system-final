@@ -7,6 +7,7 @@ import com.moviebooking.model.Showtime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import com.moviebooking.model.SeatMap;
 
 public class AdminService {
     private static final List<Movie> movies = new ArrayList<>();
@@ -120,15 +121,15 @@ public class AdminService {
 
     private static void seedMovies() {
         movies.add(new Movie("m1", "Dune: Part Two", "A sweeping sci-fi epic across the sands of Arrakis.",
-                "Sci-Fi", 8.6, 166, 1800.00, "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg", ""));
+                "Sci-Fi", 8.6, 166, 1800.00, "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg", "", "PG-13"));
         movies.add(new Movie("m2", "Inside Out 2", "A colorful return to Riley's emotional headquarters.",
-                "Animation", 7.7, 96, 1200.00, "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg", ""));
+                "Animation", 7.7, 96, 1200.00, "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg", "", "PG"));
     }
 
     private static void seedShowtimes() {
-        showtimes.add(new Showtime("s1", "m1", "Hall A", "2026-05-14", "10:30 AM"));
-        showtimes.add(new Showtime("s2", "m1", "Hall B", "2026-05-14", "07:00 PM"));
-        showtimes.add(new Showtime("s3", "m2", "Hall C", "2026-05-15", "04:30 PM"));
+        showtimes.add(new Showtime("s1", "m1", "Hall A", "2026-05-14", "10:30 AM", new SeatMap(6, 8)));
+        showtimes.add(new Showtime("s2", "m1", "Hall B", "2026-05-14", "07:00 PM", new SeatMap(6, 8)));
+        showtimes.add(new Showtime("s3", "m2", "Hall C", "2026-05-15", "04:30 PM", new SeatMap(6, 8)));
     }
 
     private static void seedBookings() {

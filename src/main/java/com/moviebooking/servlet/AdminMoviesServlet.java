@@ -44,7 +44,8 @@ public class AdminMoviesServlet extends HttpServlet {
                 parseInt(request.getParameter("durationMinutes")),
                 parseDouble(request.getParameter("price")),
                 value(request, "posterUrl"),
-                value(request, "bannerUrl")
+                value(request, "bannerUrl"),
+                value(request, "ageRating")
         );
     }
 
