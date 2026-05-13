@@ -2,4 +2,140 @@ body {
     font-family: Arial, sans-serif;
     background: #111;
     color: white;
+    min-height: 100vh;
+}
+
+a {
+    color: #ff4d4d;
+}
+
+a:hover {
+    color: #ff7777;
+}
+
+.site-navbar {
+    background: #070707;
+    border-bottom: 1px solid #2b2b2b;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: #ff4d4d;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #d7d7d7;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+    color: #ffffff;
+}
+
+.btn-danger {
+    background: #d71920;
+    border-color: #d71920;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+    background: #b91419;
+    border-color: #b91419;
+}
+
+.auth-page {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 58px);
+    padding: 32px 16px;
+}
+
+.login-card {
+    background: #181818;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    max-width: 430px;
+    padding: 32px;
+    width: 100%;
+}
+
+.login-card__header {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.login-card__eyebrow {
+    color: #ff4d4d;
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.login-card h1 {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.login-card p {
+    color: #c7c7c7;
+    margin-bottom: 0;
+}
+
+.form-label {
+    color: #f4f4f4;
+}
+
+.form-control {
+    background: #0f0f0f;
+    border: 1px solid #3a3a3a;
+    color: #ffffff;
+}
+
+.form-control:focus {
+    background: #111111;
+    border-color: #d71920;
+    box-shadow: 0 0 0 0.2rem rgba(215, 25, 32, 0.25);
+    color: #ffffff;
+}
+
+.demo-credentials {
+    border-top: 1px solid #333333;
+    color: #cfcfcf;
+    display: grid;
+    gap: 4px;
+    margin-top: 24px;
+    padding-top: 16px;
+}
+
+.demo-credentials strong {
+    color: #ffffff;
+}
+
+.message-panel {
+    background: #181818;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    margin: 0 auto;
+    max-width: 640px;
+    padding: 32px;
+}
+
+.message-panel h1 {
+    color: #ffffff;
+}
+
+.message-panel p {
+    color: #d7d7d7;
 }
