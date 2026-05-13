@@ -1,6 +1,7 @@
 package com.moviebooking.model;
 
 public class Showtime {
+
     private String id;
     private String movieId;
     private String cinemaHall;
@@ -8,7 +9,13 @@ public class Showtime {
     private String time;
     private SeatMap seatMap;
 
-    public Showtime(String id, String movieId, String cinemaHall, String date, String time, SeatMap seatMap) {
+    public Showtime(String id,
+                    String movieId,
+                    String cinemaHall,
+                    String date,
+                    String time,
+                    SeatMap seatMap) {
+
         this.id = id;
         this.movieId = movieId;
         this.cinemaHall = cinemaHall;

@@ -29,83 +29,33 @@ public class Movie {
         this.ageRating = ageRating;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
 
-    public String getTitle() {
-        return title;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public String getGenre() { return genre; }
+    public void setGenre(String genre) { this.genre = genre; }
 
-    public String getDescription() {
-        return description;
-    }
+    public double getRating() { return rating; }
+    public void setRating(double rating) { this.rating = rating; }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public int getDurationMinutes() { return durationMinutes; }
+    public void setDurationMinutes(int durationMinutes) { this.durationMinutes = durationMinutes; }
 
-    public String getGenre() {
-        return genre;
-    }
+    public double getPrice() { return price; }
+    public void setPrice(double price) { this.price = price; }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+    public String getPosterUrl() { return posterUrl; }
+    public void setPosterUrl(String posterUrl) { this.posterUrl = posterUrl; }
 
-    public double getRating() {
-        return rating;
-    }
+    public String getBannerUrl() { return bannerUrl; }
+    public void setBannerUrl(String bannerUrl) { this.bannerUrl = bannerUrl; }
 
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public int getDurationMinutes() {
-        return durationMinutes;
-    }
-
-    public void setDurationMinutes(int durationMinutes) {
-        this.durationMinutes = durationMinutes;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getPosterUrl() {
-        return posterUrl;
-    }
-
-    public void setPosterUrl(String posterUrl) {
-        this.posterUrl = posterUrl;
-    }
-
-    public String getBannerUrl() {
-        return bannerUrl;
-    }
-
-    public void setBannerUrl(String bannerUrl) {
-        this.bannerUrl = bannerUrl;
-    }
-
-    public String getAgeRating() {
-        return ageRating;
-    }
-
-    public void setAgeRating(String ageRating) {
-        this.ageRating = ageRating;
-    }
+    public String getAgeRating() { return ageRating; }
+    public void setAgeRating(String ageRating) { this.ageRating = ageRating; }
 }

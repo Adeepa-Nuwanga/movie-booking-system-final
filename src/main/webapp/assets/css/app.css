@@ -725,3 +725,155 @@ a:hover {
         color: #000000;
     }
 }
+/* =========================
+   ADMIN PANEL
+========================= */
+
+.admin-layout {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 240px minmax(0, 1fr);
+}
+
+.admin-sidebar,
+.admin-panel,
+.stat-card,
+.admin-form,
+.queue-callout {
+    background: #181818;
+    border: 1px solid #333333;
+    border-radius: 8px;
+}
+
+.admin-sidebar {
+    align-self: start;
+    display: grid;
+    gap: 8px;
+    padding: 16px;
+}
+
+.admin-sidebar a {
+    border-radius: 6px;
+    color: #dddddd;
+    font-weight: 700;
+    padding: 10px 12px;
+    text-decoration: none;
+}
+
+.admin-sidebar a:hover,
+.admin-sidebar a.active {
+    background: #d71920;
+    color: #ffffff;
+}
+
+.admin-panel {
+    padding: 28px;
+}
+
+.admin-panel h1 {
+    color: #ffffff;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 800;
+    margin-bottom: 22px;
+}
+
+.admin-panel h2,
+.admin-form h2 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.stat-grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.stat-card {
+    padding: 22px;
+}
+
+.stat-card span,
+.queue-callout span {
+    color: #cfcfcf;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.stat-card strong,
+.queue-callout strong {
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.admin-form {
+    margin-bottom: 24px;
+    padding: 20px;
+}
+
+.admin-table-wrap {
+    border: 1px solid #333333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-inline-form {
+    min-width: 220px;
+}
+
+.showtime-edit-form {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.queue-callout {
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    padding: 18px;
+}
+
+.forbidden-panel {
+    margin: 0 auto;
+    max-width: 720px;
+}
+
+.forbidden-panel p {
+    color: #d0d0d0;
+}
+
+/* =========================
+   ADMIN RESPONSIVE
+========================= */
+
+@media (max-width: 991px) {
+
+    .admin-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .showtime-edit-form {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 575px) {
+
+    .admin-panel {
+        padding: 20px;
+    }
+
+    .stat-grid,
+    .queue-callout {
+        display: block;
+    }
+}

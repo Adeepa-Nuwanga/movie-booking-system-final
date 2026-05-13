@@ -1,6 +1,7 @@
 package com.moviebooking.servlet;
 
 import com.moviebooking.service.AuthService;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -15,25 +16,27 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = {"/admin", "/admin/*"})
 public class AdminAuthFilter implements Filter {
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(false);
-
-        if (AuthService.isAdmin(session)) {
-            chain.doFilter(request, response);
-            return;
-        }
 
         if (!AuthService.isLoggedIn(session)) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
             return;
         }
 
-        httpResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
-        request.setAttribute("errorMessage", "You are not authorized to access the admin area.");
-        request.getRequestDispatcher("/WEB-INF/views/forbidden.jsp").forward(request, response);
+        if (!AuthService.isAdmin(session)) {
+            httpResponse.setStatus(HttpServletResponse.SC_FORBIDDEN);
+            request.setAttribute("errorMessage", "You are not authorized to access the admin area.");
+            request.getRequestDispatcher("/WEB-INF/views/forbidden.jsp").forward(request, response);
+            return;
+        }
+
+        chain.doFilter(request, response);
     }
 }
