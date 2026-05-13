@@ -25,7 +25,9 @@ a:hover {
 }
 
 .navbar-brand:hover,
-.navbar-brand:focus {
+.navbar-brand:focus,
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
     color: #ff4d4d;
 }
 
@@ -33,9 +35,8 @@ a:hover {
     color: #d7d7d7;
 }
 
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link:focus {
-    color: #ffffff;
+.btn {
+    border-radius: 6px;
 }
 
 .btn-danger {
@@ -61,6 +62,29 @@ a:hover {
     color: #111111;
 }
 
+.form-label {
+    color: #f4f4f4;
+}
+
+.form-control,
+.form-select {
+    background: #0f0f0f;
+    border: 1px solid #3a3a3a;
+    color: #ffffff;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background: #111111;
+    border-color: #d71920;
+    box-shadow: 0 0 0 0.2rem rgba(215, 25, 32, 0.25);
+    color: #ffffff;
+}
+
+/* =========================
+   AUTH PAGES
+========================= */
+
 .auth-page {
     align-items: center;
     display: flex;
@@ -84,7 +108,8 @@ a:hover {
     text-align: center;
 }
 
-.login-card__eyebrow {
+.login-card__eyebrow,
+.section-kicker {
     color: #ff4d4d;
     display: inline-block;
     font-size: 0.82rem;
@@ -103,23 +128,6 @@ a:hover {
 .login-card p {
     color: #c7c7c7;
     margin-bottom: 0;
-}
-
-.form-label {
-    color: #f4f4f4;
-}
-
-.form-control {
-    background: #0f0f0f;
-    border: 1px solid #3a3a3a;
-    color: #ffffff;
-}
-
-.form-control:focus {
-    background: #111111;
-    border-color: #d71920;
-    box-shadow: 0 0 0 0.2rem rgba(215, 25, 32, 0.25);
-    color: #ffffff;
 }
 
 .demo-credentials {
@@ -156,4 +164,197 @@ a:hover {
 
 .message-panel p {
     color: #d7d7d7;
+}
+
+/* =========================
+   MOVIE HERO
+========================= */
+
+.movie-hero {
+    align-items: center;
+    background:
+            linear-gradient(90deg, rgba(0, 0, 0, 0.94), rgba(0, 0, 0, 0.56)),
+            url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1800&q=80") center/cover;
+    display: flex;
+    min-height: 430px;
+}
+
+.movie-hero__content {
+    max-width: 690px;
+}
+
+.movie-hero h1,
+.details-copy h1 {
+    font-size: clamp(2.2rem, 5vw, 4.7rem);
+    font-weight: 800;
+    line-height: 1.02;
+    margin-bottom: 18px;
+}
+
+.movie-hero p,
+.details-copy p {
+    color: #d7d7d7;
+    font-size: 1.08rem;
+    margin-bottom: 24px;
+    max-width: 620px;
+}
+
+/* =========================
+   SORT PANEL
+========================= */
+
+.sort-panel {
+    align-items: end;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+    margin-bottom: 28px;
+}
+
+.sort-panel h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.sort-form {
+    min-width: 220px;
+}
+
+/* =========================
+   MOVIE CARDS
+========================= */
+
+.movie-card {
+    background: #181818;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    height: 100%;
+    overflow: hidden;
+}
+
+.movie-card__poster {
+    aspect-ratio: 2 / 3;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+.movie-card__body {
+    padding: 18px;
+}
+
+.movie-card__meta,
+.movie-stats,
+.details-stats {
+    color: #c7c7c7;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.movie-card__meta {
+    font-size: 0.82rem;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.movie-card h3 {
+    color: #ffffff;
+    font-size: 1.18rem;
+    font-weight: 700;
+    min-height: 2.8rem;
+}
+
+.movie-stats {
+    font-size: 0.92rem;
+    justify-content: space-between;
+    margin: 14px 0 8px;
+}
+
+.movie-price {
+    color: #ffffff;
+    font-size: 1.08rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.movie-card__actions {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 1fr;
+}
+
+/* =========================
+   MOVIE DETAILS
+========================= */
+
+.details-hero {
+    background-position: center;
+    background-size: cover;
+    padding: 72px 0;
+}
+
+.details-layout {
+    align-items: center;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: minmax(190px, 300px) 1fr;
+}
+
+.details-poster {
+    border: 1px solid #444444;
+    border-radius: 8px;
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+    width: 100%;
+}
+
+.details-stats {
+    margin-bottom: 26px;
+}
+
+.details-stats span,
+.showtime-placeholder {
+    background: #181818;
+    border: 1px solid #333333;
+    border-radius: 8px;
+}
+
+.details-stats span {
+    padding: 10px 14px;
+}
+
+.showtime-placeholder {
+    padding: 28px;
+}
+
+.showtime-placeholder h2 {
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.showtime-placeholder p {
+    color: #cfcfcf;
+    margin-bottom: 0;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 767px) {
+
+    .sort-panel,
+    .details-layout {
+        display: block;
+    }
+
+    .sort-form {
+        margin-top: 18px;
+    }
+
+    .details-poster {
+        margin-bottom: 28px;
+        max-width: 240px;
+    }
 }
