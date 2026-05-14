@@ -10,13 +10,11 @@ import java.util.UUID;
 import com.moviebooking.model.SeatMap;
 
 public class AdminService {
-    private static final List<Movie> movies = new ArrayList<>();
     private static final List<Showtime> showtimes = new ArrayList<>();
     private static final List<AdminBookingSummary> recentBookings = new ArrayList<>();
     private static int queueLength = 2;
 
     static {
-        seedMovies();
         seedShowtimes();
         seedBookings();
     }
@@ -25,7 +23,7 @@ public class AdminService {
     }
 
     public static synchronized int getTotalMovies() {
-        return movies.size();
+        return MovieService.getAllMovies().size();
     }
 
     public static synchronized int getTotalShowtimes() {
@@ -41,43 +39,23 @@ public class AdminService {
     }
 
     public static synchronized List<Movie> getMovies() {
-        return new ArrayList<>(movies);
+        return MovieService.getAllMovies();
     }
 
     public static synchronized Movie getMovieById(String id) {
-        for (Movie movie : movies) {
-            if (movie.getId().equals(id)) {
-                return movie;
-            }
-        }
-        return null;
+        return MovieService.getMovieById(id);
     }
 
     public static synchronized void addMovie(Movie movie) {
-        if (movie != null) {
-            movies.add(movie);
-        }
+        MovieService.addMovie(movie);
     }
 
     public static synchronized void updateMovie(Movie updatedMovie) {
-        if (updatedMovie == null) {
-            return;
-        }
-        for (int i = 0; i < movies.size(); i++) {
-            if (movies.get(i).getId().equals(updatedMovie.getId())) {
-                movies.set(i, updatedMovie);
-                return;
-            }
-        }
+        MovieService.updateMovie(updatedMovie);
     }
 
     public static synchronized void deleteMovie(String id) {
-        for (int i = 0; i < movies.size(); i++) {
-            if (movies.get(i).getId().equals(id)) {
-                movies.remove(i);
-                return;
-            }
-        }
+        MovieService.deleteMovie(id);
     }
 
     public static synchronized List<Showtime> getShowtimes() {
@@ -117,13 +95,6 @@ public class AdminService {
 
     public static String generateId(String prefix) {
         return prefix + "-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
-    }
-
-    private static void seedMovies() {
-        movies.add(new Movie("m1", "Dune: Part Two", "A sweeping sci-fi epic across the sands of Arrakis.",
-                "Sci-Fi", 8.6, 166, 1800.00, "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg", "", "PG-13"));
-        movies.add(new Movie("m2", "Inside Out 2", "A colorful return to Riley's emotional headquarters.",
-                "Animation", 7.7, 96, 1200.00, "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg", "", "PG"));
     }
 
     private static void seedShowtimes() {

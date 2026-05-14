@@ -20,10 +20,10 @@ public class MyBookingsServlet extends HttpServlet {
             throws ServletException, IOException {
         String userKey = resolveUserKey(request.getSession(false));
         List<Booking> bookings = BookingHistoryService.getBookingsForUser(userKey);
-        if (bookings.isEmpty()) {
-            BookingHistoryService.createDemoBookingForUser(userKey);
-            bookings = BookingHistoryService.getBookingsForUser(userKey);
-        }
+ //       if (bookings.isEmpty()) {
+  //          BookingHistoryService.createDemoBookingForUser(userKey);
+ //           bookings = BookingHistoryService.getBookingsForUser(userKey);
+  //      }
 
         request.setAttribute("userKey", userKey);
         request.setAttribute("bookings", bookings);

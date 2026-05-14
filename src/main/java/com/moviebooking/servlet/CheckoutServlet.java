@@ -1,7 +1,11 @@
 package com.moviebooking.servlet;
 
 import com.moviebooking.model.BookingRequest;
+import com.moviebooking.model.BookingStatus;      // ✅ ADD THIS
+import com.moviebooking.model.SeatMap;            // ✅ ADD THIS
+import com.moviebooking.model.Showtime;           // ✅ ADD THIS
 import com.moviebooking.service.BookingService;
+import com.moviebooking.service.ShowtimeService;  // ✅ ADD THIS
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,6 +19,7 @@ import java.util.List;
 
 @WebServlet("/checkout")
 public class CheckoutServlet extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,7 +64,22 @@ public class CheckoutServlet extends HttpServlet {
         );
 
         BookingService.enqueueBooking(bookingRequest);
-        BookingService.processNext();
+
+        // ✅ FIX: Process ALL pending requests, not just one
+        while (BookingService.processNext() != null) {
+            // Continue processing all queued requests
+        }
+
+        // ✅ FIX: Convert HELD seats to BOOKED on confirmation
+        if (bookingRequest.getStatus() == BookingStatus.CONFIRMED) {
+            SeatMap seatMap = ShowtimeService.getSeatMap(showtimeId);
+            if (seatMap != null) {
+                seatMap.bookSeats(selectedSeats);  // Convert HELD → BOOKED
+            }
+            // ✅ Clear session attributes after successful booking
+            session.removeAttribute("selectedSeats");
+            session.removeAttribute("selectedShowtimeId");
+        }
 
         response.sendRedirect(request.getContextPath() + "/booking-result?requestId=" + bookingRequest.getRequestId());
     }
@@ -102,7 +122,6 @@ public class CheckoutServlet extends HttpServlet {
         if (session == null || session.getAttribute(key) == null) {
             return null;
         }
-
         return session.getAttribute(key).toString();
     }
 
@@ -110,7 +129,6 @@ public class CheckoutServlet extends HttpServlet {
         if (value == null || value.trim().isEmpty()) {
             return fallback;
         }
-
         return value.trim();
     }
 }

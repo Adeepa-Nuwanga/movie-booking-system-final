@@ -39,7 +39,9 @@ public class BookingService {
         if (validateSeats(request.getShowtimeId(), request.getSelectedSeats())) {
             markSeatsConfirmed(request.getShowtimeId(), request.getSelectedSeats());
             request.confirm();
-            confirmedBookings.add(new Booking(generateBookingId(), request));
+            Booking booking = new Booking(generateBookingId(), request);
+            confirmedBookings.add(booking);
+            BookingHistoryService.saveConfirmedBooking(booking.getUserKey(), booking);
         } else {
             request.reject("One or more selected seats are no longer available.");
         }

@@ -10,12 +10,17 @@ import java.util.List;
 public class AuthService {
     public static final String CURRENT_USER_SESSION_KEY = "currentUser";
 
-    // Users are stored in memory for this OOP assignment demo. Data resets when the server restarts.
+    private static final String USERS_FILE = "users.txt";
+    // Data is cached in memory and persisted to TXT files for assignment requirements.
     private static final List<User> USERS = new ArrayList<>();
     private static int nextUserId = 1;
 
     static {
-        seedUsers();
+        loadUsers();
+        if (USERS.isEmpty()) {
+            seedUsers();
+            saveUsers();
+        }
     }
 
     private AuthService() {
@@ -36,6 +41,7 @@ public class AuthService {
 
         User user = new User(nextUserId++, normalizedName, normalizedUsername, normalizedEmail, password, UserRole.USER);
         USERS.add(user);
+        FileStorageService.appendLine(USERS_FILE, toFileLine(user));
         return user;
     }
 
@@ -115,8 +121,58 @@ public class AuthService {
         USERS.add(new User(nextUserId++, "Demo User", "user", "user@cineflex.local", "user123", UserRole.USER));
     }
 
+    private static void loadUsers() {
+        List<String> lines = FileStorageService.readLines(USERS_FILE);
+        int highestId = 0;
+
+        for (String line : lines) {
+            if (isBlank(line)) {
+                continue;
+            }
+
+            String[] parts = line.split(",", -1);
+            if (parts.length < 6) {
+                continue;
+            }
+
+            try {
+                int id = Integer.parseInt(parts[0].trim());
+                UserRole role = UserRole.valueOf(parts[5].trim().toUpperCase());
+                USERS.add(new User(id, parts[1].trim(), parts[2].trim(), parts[3].trim(), parts[4], role));
+                if (id > highestId) {
+                    highestId = id;
+                }
+            } catch (IllegalArgumentException e) {
+                // Skip malformed assignment demo rows and keep the app running.
+            }
+        }
+
+        nextUserId = highestId + 1;
+    }
+
+    private static void saveUsers() {
+        List<String> lines = new ArrayList<>();
+        for (User user : USERS) {
+            lines.add(toFileLine(user));
+        }
+        FileStorageService.writeLines(USERS_FILE, lines);
+    }
+
+    private static String toFileLine(User user) {
+        return user.getId()
+                + "," + clean(user.getName())
+                + "," + clean(user.getUsername())
+                + "," + clean(user.getEmail())
+                + "," + clean(user.getPassword())
+                + "," + user.getRole().name();
+    }
+
     private static String normalize(String value) {
         return value == null ? "" : value.trim();
+    }
+
+    private static String clean(String value) {
+        return normalize(value).replace(",", " ").replace("\r", " ").replace("\n", " ");
     }
 
     private static boolean isBlank(String value) {

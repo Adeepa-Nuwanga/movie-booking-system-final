@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieService {
+    private static final String MOVIES_FILE = "movies.txt";
+    // Data is cached in memory and persisted to TXT files for assignment requirements.
     private static final ArrayList<Movie> MOVIES = new ArrayList<>();
 
     static {
-        seedMovies();
+        loadMovies();
+        if (MOVIES.isEmpty()) {
+            seedMovies();
+            saveMovies();
+        }
     }
 
     private MovieService() {
@@ -36,6 +42,7 @@ public class MovieService {
     public static synchronized void addMovie(Movie movie) {
         if (movie != null && getMovieById(movie.getId()) == null) {
             MOVIES.add(movie);
+            saveMovies();
         }
     }
 
@@ -47,6 +54,7 @@ public class MovieService {
         for (int i = 0; i < MOVIES.size(); i++) {
             if (MOVIES.get(i).getId().equals(movie.getId())) {
                 MOVIES.set(i, movie);
+                saveMovies();
                 return;
             }
         }
@@ -60,6 +68,7 @@ public class MovieService {
         for (int i = 0; i < MOVIES.size(); i++) {
             if (MOVIES.get(i).getId().equals(id)) {
                 MOVIES.remove(i);
+                saveMovies();
                 return;
             }
         }
@@ -102,6 +111,58 @@ public class MovieService {
             default:
                 return false;
         }
+    }
+
+    private static void loadMovies() {
+        List<String> lines = FileStorageService.readLines(MOVIES_FILE);
+        for (String line : lines) {
+            if (line == null || line.trim().isEmpty()) {
+                continue;
+            }
+
+            String[] parts = line.split(",", -1);
+            if (parts.length < 6) {
+                continue;
+            }
+
+            try {
+                MOVIES.add(new Movie(
+                        parts[0].trim(),
+                        parts[1].trim(),
+                        "Movie details will be updated by the admin team.",
+                        parts[2].trim(),
+                        Double.parseDouble(parts[4].trim()),
+                        Integer.parseInt(parts[3].trim()),
+                        1500.00,
+                        parts[5].trim(),
+                        parts[5].trim(),
+                        "PG"
+                ));
+            } catch (NumberFormatException e) {
+                // Skip malformed assignment demo rows and keep the catalog available.
+            }
+        }
+    }
+
+    private static void saveMovies() {
+        List<String> lines = new ArrayList<>();
+        for (Movie movie : MOVIES) {
+            lines.add(toFileLine(movie));
+        }
+        FileStorageService.writeLines(MOVIES_FILE, lines);
+    }
+
+    private static String toFileLine(Movie movie) {
+        return clean(movie.getId())
+                + "," + clean(movie.getTitle())
+                + "," + clean(movie.getGenre())
+                + "," + movie.getDurationMinutes()
+                + "," + movie.getRating()
+                + "," + clean(movie.getPosterUrl());
+    }
+
+    private static String clean(String value) {
+        return value == null ? "" : value.trim().replace(",", " ").replace("\r", " ").replace("\n", " ");
     }
 
     private static void seedMovies() {
